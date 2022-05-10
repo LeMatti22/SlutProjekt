@@ -1,43 +1,46 @@
 ﻿using System;
 using Raylib_cs;
 
+Random rainPos = new Random(1270);
+
 
 Rain[] rain =  new Rain[1000];
+Rain[] rainX =  new Rain[rain.Length];
+
+
 
 for(int i = 0; i < rain.Length; i++)
 {
-    rain[i] = new Rain();
-
-    rain[i].lol(i*2, -20);
+    rain[i] = new Rain(rainPos.Next(1270), rainPos.Next(720));
 
 }
 
-Raylib.InitWindow(1280, 720, "SlutProjekt");
+Raylib.InitWindow(1270, 720, "SlutProjekt");
 while(!Raylib.WindowShouldClose()){
     Raylib.BeginDrawing();
     Raylib.ClearBackground(Color.BLACK);
 
     for(int i = 0; i < rain.Length; i++)
-{
-    Raylib.DrawRectangleRec(rain[(i)].raindrop, Color.BLUE);
-}
+    {
+        Raylib.DrawRectangleRec(rain[(i)].raindrop, Color.BLUE);
+    }
 
     Raylib.EndDrawing();
 }
 
 class Rain
 {
+    public int xOffset;
+    public int yOffset;
     public Rectangle raindrop = new Rectangle();
-    public void lol(int xOffset, int yOffset)
+    public Rain(int _xOffset, int _yOffset)
     {
-    raindrop = new Rectangle(xOffset, yOffset, 1, 3);
+        xOffset = _xOffset;
+        yOffset = _yOffset;
+        raindrop = new Rectangle(_xOffset, _yOffset, 1, 3);
     }
 
 } 
 
-void rainDownfall()
-{
-    while()
-}
 
 
