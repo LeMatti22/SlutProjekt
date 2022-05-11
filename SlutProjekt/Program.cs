@@ -1,6 +1,7 @@
 ﻿using System;
 using Raylib_cs;
 
+
 Random rainPos = new Random(1270);
 
 
@@ -23,7 +24,10 @@ while(!Raylib.WindowShouldClose()){
     for(int i = 0; i < rain.Length; i++)
     {
         Raylib.DrawRectangleRec(rain[(i)].raindrop, Color.BLUE);
+        rain[i].rainfall();
     }
+
+
 
     Raylib.EndDrawing();
 }
@@ -38,6 +42,16 @@ class Rain
         xOffset = _xOffset;
         yOffset = _yOffset;
         raindrop = new Rectangle(_xOffset, _yOffset, 1, 3);
+    }
+
+    public void rainfall(){
+        yOffset++;
+        raindrop = new Rectangle(xOffset, yOffset, 1, 3);
+
+        if(yOffset > 720)
+        {
+            yOffset = 0;
+        }
     }
 
 } 
